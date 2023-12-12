@@ -32,9 +32,11 @@ const cards = [
         <article>
           <h5>{card.head}</h5>
 
-          <svg>
-            <use xlink:href={`/profil-s-temporary/images/sprites.svg#${card.icon}`} />
-          </svg>
+          <span>
+            <svg>
+              <use xlink:href={`/profil-s-temporary/images/sprites.svg#${card.icon}`} />
+            </svg>
+          </span>
 
           <p>{card.content}</p>
         </article>
@@ -58,14 +60,20 @@ const cards = [
       max-width: var(--l-max-width);
 
       article {
-        svg {
+        span {
           background: rgb(var(--c-theme-lighter));
           border-radius: 50%;
-          color: rgb(var(--c-light));
-          height: 125px;
-          margin: 20px 0;
-          padding: 40px;
+          display: grid;
           width: 125px;
+          height: 125px;
+          margin: 20px auto;
+        }
+
+        svg {
+          color: rgb(var(--c-light));
+          height: 45px;
+          margin: auto;
+          width: 45px;
         }
       }
     }
