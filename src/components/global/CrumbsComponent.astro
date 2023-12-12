@@ -1,0 +1,61 @@
+---
+const { parent, title } = Astro.props;
+---
+
+<aside>
+  <nav>
+    <ul>
+      <li><a href="/">Главная</a></li>
+      {
+        parent && (
+          <li>
+            <a href="/catalog">{parent}</a>
+          </li>
+        )
+      }
+      <li>{title}</li>
+    </ul>
+  </nav>
+</aside>
+
+<style lang="scss">
+  aside {
+    background: rgb(var(--c-light));
+    box-shadow: 0 5px 5px rgba(var(--c-dark), 0.1);
+    position: sticky;
+    top: 92px;
+    z-index: 8;
+
+    nav {
+      margin: auto;
+      max-width: var(--l-max-width);
+      padding: 20px clamp(20px, 5vw, 40px);
+
+      ul {
+        display: flex;
+        gap: 10px;
+
+        li {
+          &:not(:last-of-type) {
+            &::after {
+              content: " / ";
+              margin: 0 0 0 10px;
+            }
+          }
+
+          a {
+            &:hover {
+              border-bottom: 2px solid;
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  const header = document.querySelector("header");
+
+  header?.style.setProperty("box-shadow", "0 5px 5px rgba(var(--c-dark), 0.2)");
+</script>

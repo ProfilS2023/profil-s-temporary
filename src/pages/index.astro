@@ -1,0 +1,48 @@
+---
+import HomeFeaturesComponent from "../components/local/HomeFeaturesComponent.astro";
+import HomeHeroComponent from "../components/local/HomeHeroComponent.astro";
+import HomeOurProductsComponent from "../components/local/HomeOurProductsComponent.astro";
+import HomeWeightmetricsComponent from "../components/local/HomeWeightmetricsComponent.astro";
+import HomeWhyWeAreComponent from "../components/local/HomeWhyWeAreComponent.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <HomeHeroComponent />
+
+  <HomeOurProductsComponent />
+
+  <HomeWeightmetricsComponent />
+
+  <HomeWhyWeAreComponent />
+
+  <section>
+    <article>
+      <h2>Стальные трубы для вашего бизнеса</h2>
+      <p>
+        Количество организаций, предлагающих стальные трубы, неизменно увеличивается, а потому потребителям все сложнее выбрать поставщика, ведь, на первый взгляд, все игроки на
+        рынке металлопроката предлагают схожие условия. Однако волгоградская компания «Профиль-С выделяется на фоне других торгующих фирм. Чем? Прежде всего, подходом к клиенту и
+        торговыми условиями. Приоритетными для нее является качество поставляемой трубной продукции, забота о выгоде клиента и абсолютная прозрачность в партнерских отношениях с
+        заказчиком.
+      </p>
+    </article>
+  </section>
+
+  <HomeFeaturesComponent />
+</BaseLayout>
+
+<style lang="scss">
+  section {
+    background-color: rgb(var(--c-theme-lighter));
+    box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2);
+    color: rgb(var(--c-light));
+    padding: 100px clamp(20px, 5vw, 40px);
+    z-index: 1;
+
+    article {
+      margin: auto;
+      max-width: var(--l-max-width);
+      text-align: center;
+    }
+  }
+</style>

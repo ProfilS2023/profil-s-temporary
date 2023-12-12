@@ -1,0 +1,91 @@
+---
+
+---
+
+<section>
+  <article>
+    <svg viewBox="0 0 100 100" width="100" height="100" fill="none" stroke-width="2">
+      <path>
+        <animate
+          attributeName="d"
+          dur="3000ms"
+          repeatCount="indefinite"
+          keyTimes="0; .0625; .3125; .395833333; .645833333; .833333333; 1"
+          calcMode="spline"
+          keySplines="0,0,1,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1"
+          values="
+              M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z;
+              M 0,0 C 50,0 50,0 100,0 100,50 100,50 100,100 50,100 50,100 0,100 0,50 0,50 0,0 Z; 
+              M 50,0 C 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 37.5,25 37.5,25 50,0 Z;
+              M 50,0 C 75,50 75,50 100,100 50,100 50,100 0,100 12.5,75 12.5,75 25,50 37.5,25 37.5,25 50,0 Z;
+              M 100,50 C 100,77.6 77.6,100 50,100 22.4,100 0,77.6 0,50 0,22.4 22.4,0 50,0 77.6,0 100,22.4 100,50 Z;
+              M 100,50 C 100,77.6 77.6,100 50,100 22.4,100 0,77.6 0,50 0,22.4 22.4,0, 50,0 77.6,0 100,22.4 100,50 Z;
+              M 100,100 C 50,100 50,100 0,100 0,50 0,50 0,0 50,0 50,0 100,0 100,50 100,50 100,100 Z;
+            "
+        ></animate>
+        <animate
+          attributeName="stroke"
+          dur="3000ms"
+          repeatCount="indefinite"
+          keyTimes="0; .0625; .3125; .395833333; .645833333; .833333333; 1"
+          calcMode="spline"
+          keySplines="0,0,1,1; .42,0,1,1; 0,0,.58,1; .42,0,.58,1; .42,0,.58,1; .42,0,.58,1"
+          values="white; white; white; white; white; white; white;"></animate>
+      </path>
+    </svg>
+
+    <h1>Мы поставляем трубы любого типоразмера</h1>
+
+    <p>
+      Благодаря налаженным связям с металлургическими заводами России, Профиль-С имеет возможность осуществлять поставки по рыночным ценам, в разумные сроки, в любой уголок РФ,
+      минимальной партией от одной тонны.
+    </p>
+
+    <a href="/catalog" class="button">Посмотреть каталог</a>
+  </article>
+
+  <svg height="22" width="42">
+    <use xlink:href="/images/sprites.svg#icon-rigth-corner"></use>
+  </svg>
+</section>
+
+<style lang="scss">
+  section {
+    background-color: rgb(var(--c-theme));
+    color: rgb(var(--c-light));
+    display: grid;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+
+    article {
+      margin: auto auto 0;
+      max-width: var(--l-max-width);
+      padding: 100px clamp(20px, 5vw, 40px);
+      width: 100%;
+
+      p {
+        max-width: 720px;
+        margin: 0 0 40px;
+      }
+    }
+
+    svg {
+      margin: auto auto 40px;
+    }
+  }
+</style>
+
+<script is:inline>
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", () => {
+    const trigger = document.querySelector("section");
+
+    if (trigger.getBoundingClientRect().bottom <= header.offsetTop) {
+      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2);");
+    } else {
+      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0);");
+    }
+  });
+</script>

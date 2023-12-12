@@ -1,0 +1,42 @@
+---
+const { id, name } = Astro.props;
+---
+
+<article>
+  <picture>
+    <img src=`/images/catalog/${id}.jpg` alt={name} />
+  </picture>
+
+  <h5>{name}</h5>
+
+  <a href="/">ГОСТ 10704-91 Скачать (348 Кб)</a>
+
+  <a href=`/catalog/${id}` class="button">Перейти к товарам</a>
+</article>
+
+<style lang="scss">
+  article {
+    display: grid;
+    place-items: center;
+    text-align: center;
+
+    picture {
+      display: grid;
+      margin: 0 0 10px;
+      padding: 40px;
+      position: relative;
+
+      &::after {
+        background-color: rgba(var(--c-theme), 0.1);
+        content: "";
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
+    }
+
+    .button {
+      margin: 40px auto 0;
+    }
+  }
+</style>

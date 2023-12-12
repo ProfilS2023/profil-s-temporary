@@ -1,0 +1,89 @@
+---
+const cards = [
+  {
+    head: "Доставка по РФ",
+    icon: "icon-map",
+    content: "Благодаря налаженной транспортной сети, мы готовы доставить продукцию в любой регион России.",
+  },
+  {
+    head: "13 лет на рынке",
+    icon: "icon-calendar",
+    content: "Компания 'Профиль-С' уже более 13 лет занимается поставками стальных труб.",
+  },
+  {
+    head: "Контроль качества",
+    icon: "icon-iso",
+    content: "Мы следим за качеством продукции. От производителя, до отгрузки нашим клиентам.",
+  },
+  {
+    head: "Режим работы 24/7",
+    icon: "icon-work",
+    content: "Мы понимаем, как иногда важно получить груз в кратчайшие сроки не дожидаясь окончания выходных.",
+  },
+];
+---
+
+<section>
+  <h3>Почему стоит выбирать нас ?</h3>
+
+  <div>
+    {
+      cards.map((card) => (
+        <article>
+          <h5>{card.head}</h5>
+
+          <svg>
+            <use xlink:href={`/images/sprites.svg#${card.icon}`} />
+          </svg>
+
+          <p>{card.content}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  section {
+    display: grid;
+    gap: 80px;
+    padding: 100px clamp(20px, 5vw, 40px);
+    text-align: center;
+
+    div {
+      display: inherit;
+      gap: 40px;
+      grid-template: auto / repeat(4, auto);
+      margin: auto;
+      max-width: var(--l-max-width);
+
+      article {
+        svg {
+          background: rgb(var(--c-theme-lighter));
+          border-radius: 50%;
+          color: rgb(var(--c-light));
+          height: 125px;
+          margin: 20px 0;
+          padding: 40px;
+          width: 125px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 920px) {
+    section {
+      div {
+        grid-template: auto / repeat(2, auto);
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    section {
+      div {
+        grid-template: auto / auto;
+      }
+    }
+  }
+</style>

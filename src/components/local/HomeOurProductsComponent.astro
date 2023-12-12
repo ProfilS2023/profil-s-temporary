@@ -1,0 +1,152 @@
+---
+import CarouselProductComponent from "./CarouselProductComponent.astro";
+
+const products = [
+  {
+    id: 1,
+    name: "Труба плоскоовальная",
+  },
+  {
+    id: 2,
+    name: "Труба квадратная",
+  },
+  {
+    id: 3,
+    name: "Труба профильная",
+  },
+  {
+    id: 4,
+    name: "Труба круглая",
+  },
+  {
+    id: 5,
+    name: "Труба круглая электросварная тонкостенная",
+  },
+  {
+    id: 6,
+    name: "Труба круглая водогазопроводная",
+  },
+  {
+    id: 7,
+    name: "Труба прямоугольная",
+  },
+  {
+    id: 8,
+    name: "Труба овальная",
+  },
+  {
+    id: 9,
+    name: "Труба арочная",
+  },
+  {
+    id: 10,
+    name: "Труба мебельная тонкостенная",
+  },
+  {
+    id: 11,
+    name: "Труба оцинкованная",
+  },
+];
+---
+
+<section>
+  <h3>Наша процукция</h3>
+
+  <div class="carousel">
+    {products.map((product) => <CarouselProductComponent id={product.id} name={product.name} />)}
+  </div>
+
+  <div class="buttons-group">
+    <button class="button__previous"></button>
+    <button class="button__next"></button>
+  </div>
+
+  <a href="/catalog" class="button">Посмотреть каталог</a>
+</section>
+
+<style lang="scss">
+  section {
+    display: grid;
+    gap: 80px;
+    padding: 100px clamp(20px, 5vw, 40px);
+
+    h3 {
+      margin: auto;
+    }
+
+    div {
+      display: inherit;
+      grid-auto-flow: column;
+      gap: 40px;
+      margin: auto;
+      max-width: 1100px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .buttons-group {
+      gap: 10px;
+      width: fit-content;
+
+      button {
+        background-color: rgb(var(--c-theme-lighter));
+        border-radius: 25px;
+        cursor: pointer;
+        margin: auto;
+        padding: 6px 30px;
+
+        &:first-of-type {
+          background-color: rgba(var(--c-theme-lighter), 0.2);
+          padding: 6px 20px;
+        }
+
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+
+    .button {
+      margin: auto;
+    }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll(".carousel article") as NodeListOf<HTMLDivElement>;
+  const next = document.querySelector(".button__next") as HTMLButtonElement;
+
+  let current = 0;
+
+  let total = slides.length - 1;
+
+  let gap = 40;
+
+  next.addEventListener("click", () => {
+    if (current === total) {
+      current = 0;
+    } else {
+      current++;
+    }
+
+    mooveSlides();
+  });
+
+  const previous = document.querySelector(".button__previous") as HTMLButtonElement;
+
+  previous.addEventListener("click", () => {
+    if (current === 0) {
+      current = total;
+    } else {
+      current--;
+    }
+
+    mooveSlides();
+  });
+
+  const mooveSlides = () => {
+    slides.forEach((slide, index) => {
+      slide.style.transform = `translateX(calc(${slides[index].offsetWidth + gap}px * -${current}))`;
+    });
+  };
+</script>

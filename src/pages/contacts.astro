@@ -1,0 +1,122 @@
+---
+import CrumbsComponent from "../components/global/CrumbsComponent.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <CrumbsComponent title="Контакты" />
+
+  <section>
+    <h1>Контакты</h1>
+
+    <ul>
+      <li>
+        Юридический адрес:
+        <span>400075 г. Волгоград, ул. Краснополянская,72Д</span>
+      </li>
+
+      <li>
+        Адрес электронной почты для заказа:
+        <a href="mailto:truba@profilss.ru">truba@profilss.ru</a>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        Розничный отдел:
+        <a href="tel:+78442911199">+7 (8442) 91 11 99</a>
+      </li>
+
+      <li>
+        Почта розничного отдела:
+        <a href="mailto:base@profilss.ru">base@profilss.ru</a>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        Оптовый отдел:
+        <a href="tel:+78442998199">+7 (8442) 99 81 99</a>
+      </li>
+
+      <li>
+        Почта оптового отдела:
+        <a href="mailto:office@profilss.ru">office@profilss.ru</a>
+      </li>
+    </ul>
+  </section>
+
+  <iframe
+    class="map"
+    src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac439e34ec90c6824cb4d012387914f205caf8a18e6123aa462cdade3e4082a4b&source=constructor"
+    width="100%"
+    height="400"
+  >
+  </iframe>
+</BaseLayout>
+
+<style lang="scss">
+  section {
+    display: grid;
+    gap: 40px;
+    grid-template: auto / repeat(3, auto);
+    margin: auto;
+    max-width: var(--l-max-width);
+    padding: 140px clamp(20px, 5vw, 40px);
+
+    h1,
+    h3 {
+      grid-column: 1 / -1;
+    }
+
+    ul {
+      li {
+        margin: 0 0 20px;
+
+        a,
+        span {
+          display: block;
+          width: fit-content;
+        }
+
+        a {
+          padding: 0 0 5px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .map {
+    border: none;
+    filter: grayscale(100%);
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      filter: grayscale(0);
+    }
+  }
+
+  @media only screen and (max-width: 920px) {
+    section {
+      grid-template: auto / repeat(2, auto);
+
+      h1 {
+        grid-column: auto;
+      }
+    }
+
+    .map {
+      grid-column: auto;
+    }
+  }
+
+  @media (max-width: 640px) {
+    section {
+      grid-template: auto / auto;
+    }
+  }
+</style>

@@ -1,0 +1,50 @@
+---
+const { id, name } = Astro.props;
+---
+
+<article>
+  <a href=`/catalog/${id}`>
+    <picture>
+      <img src=`/images/catalog/${id}.jpg` alt={name} />
+    </picture>
+  </a>
+  <p>
+    {name}
+  </p>
+</article>
+
+<style lang="scss">
+  article {
+    display: grid;
+    gap: 20px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+    a {
+      border-radius: 50%;
+      height: 150px;
+      overflow: hidden;
+      width: 150px;
+
+      picture {
+        display: grid;
+        position: relative;
+
+        img {
+          object-fit: contain;
+          height: 150px;
+          width: 150px;
+        }
+
+        &::after {
+          background-color: rgb(var(--c-theme-lighter));
+          content: "";
+          height: 150px;
+          opacity: 0.2;
+          position: absolute;
+          width: 150px;
+        }
+      }
+    }
+  }
+</style>
