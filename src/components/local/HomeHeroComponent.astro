@@ -59,6 +59,15 @@
     top: 0;
     z-index: -1;
 
+    &::before {
+      content: "";
+      background: url("/images/m9HFWnHjYQJYyQrTYCb0NkGhenk2tJ.webp") no-repeat center / cover;
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
     article {
       margin: auto auto 0;
       max-width: var(--l-max-width);
@@ -83,15 +92,15 @@
 </style>
 
 <script is:inline>
-  const header = document.querySelector("header");
+  header.setAttribute("style", "background-color: transparent;");
 
   window.addEventListener("scroll", () => {
     const trigger = document.querySelector("section");
 
-    if (trigger.getBoundingClientRect().bottom <= header.offsetTop) {
-      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2);");
+    if (trigger.getBoundingClientRect().bottom <= header.offsetTop + 92) {
+      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2); background-color: rgb(var(--c-theme));");
     } else {
-      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0);");
+      header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0); background-color: transparent;");
     }
   });
 </script>

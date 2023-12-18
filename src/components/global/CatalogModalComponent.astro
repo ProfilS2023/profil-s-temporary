@@ -12,30 +12,30 @@
   <h4>Сделать заказ</h4>
   <p>Пожалуйста, заполните форму и мы свяжемся с вами в ближайшее время.</p>
 
-  <form action="#">
+  <form id="catalog-form">
     <label>
       ФИО
-      <input type="text" />
+      <input type="text" name="fullname" id="fullname" />
     </label>
 
     <label>
       Телефон
-      <input type="text" />
+      <input type="text" name="phone" id="phone" />
     </label>
 
     <label>
       Эл.почта
-      <input type="text" />
+      <input type="text" name="email" id="email" />
     </label>
 
     <label>
       Предполагаемый объем заказа
-      <input type="text" />
+      <input type="text" name="amount" id="amount" />
     </label>
 
     <label>
       Комментарий к заказу
-      <textarea name="" id="" cols="30" rows="5"></textarea>
+      <textarea name="message" id="message" cols="30" rows="5"></textarea>
     </label>
 
     <button class="button">Отправить</button>
@@ -103,3 +103,26 @@
     }
   }
 </style>
+
+<script>
+  const form = document.querySelector("#catalog-form") as HTMLFormElement;
+  const catalogDialog = document.querySelector("#catalog-dialog") as HTMLDialogElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let formData = new FormData(form);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://xn----otbjkeglu8e.xn--p1ai/catalog-form.php");
+    xhr.send(formData);
+
+    catalogDialog.close();
+
+    form.fullname.value = "";
+    form.phone.value = "";
+    form.amount.value = "";
+    form.email.value = "";
+    form.message.value = "";
+  });
+</script>

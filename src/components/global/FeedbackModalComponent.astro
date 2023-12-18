@@ -12,25 +12,26 @@
   <h4>Обратная связь</h4>
   <p>Пожалуйста, заполните форму и мы свяжемся с вами в ближайшее время.</p>
 
-  <form action="#">
+  <!-- https://xn----otbjkeglu8e.xn--p1ai/sendmail.php -->
+  <form id="feedback-form">
     <label>
       ФИО
-      <input type="text" />
+      <input type="text" name="fullname" id="fullname" />
     </label>
 
     <label>
       Телефон
-      <input type="text" />
+      <input type="text" name="phone" id="phone" />
     </label>
 
     <label>
       Эл.почта
-      <input type="text" />
+      <input type="text" name="email" id="email" />
     </label>
 
     <label>
-      Ваше сообщеие
-      <textarea name="" id="" cols="30" rows="5"></textarea>
+      Ваше сообщение
+      <textarea name="message" id="message" cols="30" rows="5"></textarea>
     </label>
 
     <button class="button">Отправить</button>
@@ -98,3 +99,25 @@
     }
   }
 </style>
+
+<script>
+  const form = document.querySelector("#feedback-form") as HTMLFormElement;
+  const feedbackDialog = document.querySelector("#feedback-dialog") as HTMLDialogElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    let formData = new FormData(form);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://xn----otbjkeglu8e.xn--p1ai/feedback-form.php");
+    xhr.send(formData);
+
+    feedbackDialog.close();
+
+    form.fullname.value = "";
+    form.phone.value = "";
+    form.email.value = "";
+    form.message.value = "";
+  });
+</script>

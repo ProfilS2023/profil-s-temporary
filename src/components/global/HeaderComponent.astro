@@ -31,7 +31,7 @@ const links = [
   <nav>
     <svg xmlns="http://www.w3.org/2000/svg" width="160" height="52" fill="none" viewBox="0 0 160 52">
       <path
-        fill="rgb(var(--c-theme-lighter))"
+        fill="#52a2db"
         d="M137.818 0a26.006 26.006 0 0 1 15.279 4.932l-7.727 16.83A16.826 16.826 0 0 0 137.819 20c-8.677 0-15.711 6.417-15.711 14.333s7.034 14.333 15.711 14.333c6.611 0 12.267-3.725 14.587-9h7.596C155.407 47.069 147.191 52 137.819 52c-14.399 0-26.073-11.64-26.073-26S123.42 0 137.819 0h-.001Z"
       ></path>
       <path
@@ -65,7 +65,6 @@ const links = [
       color: rgb(var(--c-light));
       position: sticky;
       top: 0;
-      transition: box-shadow 0.2s ease-in-out;
       z-index: 9;
 
       nav {
@@ -113,6 +112,14 @@ const links = [
 
     @media (max-width: 920px) {
       header {
+        &.active {
+          background-color: rgb(var(--c-theme)) !important;
+          nav {
+            ul {
+              display: inherit;
+            }
+          }
+        }
         nav {
           gap: 40px;
 
@@ -128,10 +135,7 @@ const links = [
             grid-column: 1 / -1;
             grid-template: auto / auto;
             place-content: start;
-
-            &.hidden {
-              display: none;
-            }
+            display: none;
           }
         }
       }
@@ -140,8 +144,8 @@ const links = [
 
   <script is:inline>
     const menuIcon = document.querySelector("#menu-icon");
-    const list = document.querySelector("nav ul");
+    const header = document.querySelector("header");
 
-    menuIcon.addEventListener("click", () => list.classList.toggle("hidden"));
+    menuIcon.addEventListener("click", () => header.classList.toggle("active"));
   </script>
 </header>
