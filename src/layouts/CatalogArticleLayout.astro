@@ -1,6 +1,7 @@
 ---
 import CatalogModalComponent from "../components/global/CatalogModalComponent.astro";
 import CrumbsComponent from "../components/global/CrumbsComponent.astro";
+import CalculatorComponent from "../components/local/CalculatorComponent.astro";
 import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 ---
@@ -17,13 +18,14 @@ const { frontmatter } = Astro.props;
       </picture>
 
       <ul>
-        <li>A - высота</li>
-        <li>B - ширина</li>
+        <li>D - диаметр, мм</li>
         <li>S - толщина стенки, мм</li>
       </ul>
 
       <a href="#" class="button" id="catalog-button">Сделать заказ</a>
     </div>
+
+    {frontmatter.type === "circle" ? <CalculatorComponent /> : null}
 
     <article class="markdown-content">
       <slot />

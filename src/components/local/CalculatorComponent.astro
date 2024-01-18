@@ -1,0 +1,172 @@
+---
+const { frontmatter } = Astro.props;
+---
+
+<div>
+  <h4>Калькулятор расчета массы 1 п/м трубы</h4>
+
+  <form>
+    <label for="d">
+      Диаметр трубы D, мм.:
+      <input type="number" name="d" value="" placeholder="30" />
+    </label>
+
+    <label for="s">
+      Толщина стенки S, мм:
+
+      <input type="number" name="s" value="" placeholder="1.2" />
+    </label>
+
+    <label for="w">
+      Вес 1 п/м, кг
+      <input type="text" name="w" value="" placeholder="0" readonly />
+    </label>
+
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 300 312">
+      <path stroke="#222" stroke-width="2" d="M1 109v203M217 109v203"></path>
+      <path fill="#000" d="m0 283 10 5.774v-11.548L0 283Zm216 0-10-5.773v11.547L216 283ZM9 284h198v-2H9v2ZM218 109l10 5.774v-11.548L218 109Zm9 1h73v-2h-73v2Z"></path>
+      <text x="250" y="95" fill="#000" id="sp" font-size="18">1.2</text>
+      <text x="100" y="270" fill="#000" id="dp" font-size="18">Ø30</text>
+      <mask id="a" width="218" height="218" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha">
+        <circle cx="109" cy="109" r="108" fill="#fff" stroke="#000" stroke-width="2"></circle>
+      </mask>
+      <g stroke="#000" stroke-width="2" mask="url(#a)">
+        <path
+          d="m68.72 3.694-80 83M81.697 3.717l-105 102M93.718-2.303l-100.001 103M103.71-2.296-1.285 103.708M113.713-2.299l-117 119M122.707-2.293l-129 129M131.712-2.298l-133 135M138.702 3.712l-135 133M146.702 3.712l-143 141M152.702 6.712l-149 147M160.7 9.714l-157 154M166.714 9.7l-159 162M172.703 17.712l-158 156M177.705 21.709 17.702 180.706M182.707 25.707l-163 163M186.707 30.707l-158 158M191.709 34.705l-163 164M195.709 40.705l-163 164M200.707 44.707l-160 160M204.707 50.707l-161 161M208.7 57.714l-159 156M208.712 64.703l-154 156M214.707 69.707l-153 153M214.702 79.712l-143 141M220.702 82.712l-142 140M224.702 88.712l-149 147M226.704 97.71l-129 128M224.695 109.719l-117 113M224.701 116.714l-111 109M220.7 130.714l-102 100M214.697 146.717l-71 69"
+        ></path>
+      </g>
+      <circle cx="109" cy="109" r="89" fill="#fff" stroke="#000" stroke-width="2"></circle>
+      <circle cx="109" cy="109" r="108" stroke="#000" stroke-width="2"></circle>
+      <path fill="#000" d="m199 109-10-5.774v11.548L199 109Zm-9-1h-73v2h73v-2Z"></path>
+    </svg>
+  </form>
+</div>
+
+<style lang="scss">
+  #dp {
+    position: absolute;
+    right: 197px;
+    bottom: 65px;
+  }
+
+  #sp {
+    position: absolute;
+    right: 65px;
+    top: 90px;
+  }
+
+  h4 {
+    margin: 40px 0;
+  }
+
+  form {
+    border-radius: 20px;
+    box-shadow: 0 5px 5px rgba(var(--c-dark), 0.1);
+    display: grid;
+    grid-template: auto / auto auto 250px;
+    gap: 40px;
+    margin: 0 0 80px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      background: rgba(var(--c-theme-lighter), 0.04);
+      content: "";
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      z-index: 0;
+    }
+
+    svg {
+      grid-column: 3;
+      grid-row: 1 / 4;
+    }
+
+    label {
+      display: grid;
+      gap: 10px;
+
+      input {
+        border: 1px solid #cccccc;
+        padding: 10px;
+        z-index: 6;
+      }
+    }
+  }
+
+  @media (max-width: 920px) {
+    form {
+      grid-template: auto / auto 250px;
+
+      svg {
+        grid-column: 2;
+        grid-row: 1 / 4;
+      }
+
+      #dp {
+        right: 197px;
+        bottom: 90px;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    form {
+      grid-template: auto / auto;
+
+      svg {
+        grid-column: 1;
+        grid-row: unset;
+      }
+
+      #dp {
+        left: 140px;
+        bottom: 90px;
+      }
+
+      #sp {
+        left: 310px;
+        top: 420px;
+      }
+    }
+  }
+</style>
+
+<script is:inline>
+  const form = document.querySelector("form");
+  const d = form.querySelector("[name=d]");
+  const s = form.querySelector("[name=s]");
+  const w = form.querySelector("[name=w]");
+
+  const Pi = 3.1415;
+  const Ro = 7.85;
+  const L = 1;
+
+  const dp = document.querySelector("#dp");
+  const sp = document.querySelector("#sp");
+
+  const setResult = () => {
+    w.value = (((Pi * (Number(d.value) - Number(s.value)) * Number(s.value) * Ro) / 1000) * L).toFixed(3);
+    w.value = w.value + ", кг";
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    d.value = "";
+    s.value = "";
+    w.value = "";
+  });
+
+  d.addEventListener("change", () => {
+    setResult();
+
+    dp.innerHTML = "Ø" + d.value;
+  });
+
+  s.addEventListener("change", () => {
+    setResult();
+
+    sp.innerHTML = s.value;
+  });
+</script>

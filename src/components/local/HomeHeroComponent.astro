@@ -47,9 +47,19 @@
   <svg height="22" width="42">
     <use xlink:href="/images/sprites.svg#icon-rigth-corner"></use>
   </svg>
+  <div class="overlay"></div>
 </section>
 
 <style lang="scss">
+  .overlay {
+    inset: 0;
+    position: absolute;
+    background-size: cover;
+    transition: all 0.8s ease-in-out;
+    z-index: -1;
+    opacity: 0;
+  }
+
   section {
     background-color: rgb(var(--c-theme));
     color: rgb(var(--c-light));
@@ -58,15 +68,6 @@
     position: sticky;
     top: 0;
     z-index: -1;
-
-    &::before {
-      content: "";
-      background: url("/images/m9HFWnHjYQJYyQrTYCb0NkGhenk2tJ.webp") no-repeat center / cover;
-      position: absolute;
-      inset: 0;
-      opacity: 0.2;
-      z-index: -1;
-    }
 
     article {
       margin: auto auto 0;
@@ -103,4 +104,33 @@
       header.setAttribute("style", "box-shadow: 0 5px 5px rgba(var(--c-dark), 0); background-color: transparent;");
     }
   });
+
+  const overlay = document.querySelector(".overlay");
+
+  let i = 0;
+  let images = [];
+  const slideTime = 6000;
+
+  images[0] = "/images/DSC_0368.webp";
+  images[1] = "/images/DSC_0358.webp";
+  images[2] = "/images/DSC_0329.webp";
+  images[3] = "/images/DSC_0214.webp";
+  images[4] = "/images/DSC_0086.webp";
+
+  const changePicture = () => {
+    overlay.style.opacity = ".2";
+    overlay.style.backgroundImage = "url(" + images[i] + ")";
+    setTimeout(() => {
+      overlay.style.opacity = "0";
+    }, 5000);
+
+    if (i < images.length - 1) {
+      i++;
+    } else {
+      i = 0;
+    }
+    setTimeout(changePicture, slideTime);
+  };
+
+  window.onload = changePicture;
 </script>
