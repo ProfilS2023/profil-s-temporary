@@ -1,10 +1,6 @@
 ---
 const links = [
   {
-    name: "Главная",
-    href: "/",
-  },
-  {
     name: "Каталог",
     href: "/catalog",
   },
@@ -55,6 +51,26 @@ const links = [
           </li>
         ))
       }
+
+      <li>
+        <a href="https://vk.com/profils34" target="_blank">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M13.0718 19.4856C4.87192 19.4856 0.19489 13.8641 0 4.51001H4.10744C4.24236 11.3757 7.2704 14.2839 9.66887 14.8835V4.51001H13.5366V10.4313C15.9051 10.1764 18.3932 7.47815 19.2327 4.51001H23.1004C22.4558 8.16773 19.7575 10.866 17.8387 11.9753C19.7575 12.8747 22.8307 15.2283 24 19.4856H19.7425C18.8281 16.6374 16.5497 14.4338 13.5366 14.1339V19.4856H13.0718Z"
+              fill="currentColor"></path>
+          </svg>
+        </a>
+
+        <a href="https://t.me/profils34" target="_blank">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M2.51239 10.8488C8.41795 8.27585 12.3559 6.57959 14.3263 5.76003C19.9521 3.42005 21.1211 3.01357 21.883 3.00014C22.0506 2.99719 22.4253 3.03872 22.668 3.23567C22.873 3.40197 22.9294 3.62661 22.9563 3.78428C22.9833 3.94195 23.0169 4.30112 22.9902 4.58177C22.6854 7.78504 21.3662 15.5585 20.6951 19.1462C20.4111 20.6643 19.852 21.1733 19.3107 21.2231C18.1343 21.3314 17.2409 20.4457 16.1015 19.6988C14.3186 18.53 13.3113 17.8025 11.5807 16.662C9.58058 15.3439 10.8772 14.6195 12.017 13.4356C12.3153 13.1258 17.4986 8.41117 17.5989 7.98348C17.6115 7.92999 17.6231 7.7306 17.5046 7.62532C17.3862 7.52004 17.2114 7.55604 17.0852 7.58467C16.9064 7.62526 14.0581 9.50789 8.54035 13.2326C7.73187 13.7877 6.99958 14.0582 6.34347 14.044C5.62016 14.0284 4.2288 13.6351 3.19447 13.2988C1.92583 12.8865 0.91753 12.6684 1.00533 11.9681C1.05106 11.6033 1.55341 11.2302 2.51239 10.8488Z"
+              fill="currentColor"></path>
+          </svg>
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -87,7 +103,7 @@ const links = [
 
         ul {
           display: inherit;
-          grid-template: auto / repeat(6, auto);
+          grid-template: auto / repeat(7, auto);
           gap: 40px;
           place-items: baseline;
           place-content: end;
@@ -99,18 +115,38 @@ const links = [
               &:hover {
                 border-bottom: 2px solid currentColor;
               }
+
+              svg {
+                display: unset;
+              }
             }
 
-            &:last-child {
+            &:nth-child(5) {
               font-size: 18px;
               font-weight: 400;
+            }
+
+            &:last-of-type {
+              display: flex;
+              gap: 20px;
+              margin: auto 0;
+
+              a {
+                display: block;
+                line-height: 0;
+                padding: 0;
+
+                &:hover {
+                  border: none;
+                }
+              }
             }
           }
         }
       }
     }
 
-    @media (max-width: 920px) {
+    @media (max-width: 980px) {
       header {
         &.active {
           background-color: rgb(var(--c-theme)) !important;
