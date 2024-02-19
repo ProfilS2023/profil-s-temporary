@@ -104,22 +104,24 @@
   trigger.addEventListener("click", (e) => {
     e.preventDefault();
 
-    fetch(
-      `https://api.telegram.org/bot6558665481:AAFhp9dBhJOVRbkdTK2Iv1SastLFHK7otzU/sendMessage?chat_id=-1002101728653&text=Заявка с сайта%0A%0A%2B${input.value}&parse_mode=html`,
-    )
-      .then(() => {
-        trigger.style.display = "none";
-        input.value = "";
-        input.style.display = "none";
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        startCountdown(24);
-      });
+    if (input.value.length === 18) {
+      fetch(
+        `https://api.telegram.org/bot6558665481:AAFhp9dBhJOVRbkdTK2Iv1SastLFHK7otzU/sendMessage?chat_id=-1002101728653&text=Заявка с сайта%0A%0A%2B${input.value}&parse_mode=html`,
+      )
+        .then(() => {
+          trigger.style.display = "none";
+          input.value = "";
+          input.style.display = "none";
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        .finally(() => {
+          startCountdown(24);
+        });
 
-    startCountdown(24);
+      startCountdown(24);
+    }
   });
 
   const prefixNumber = (str) => {
@@ -135,7 +137,7 @@
     return "7 (";
   };
 
-  input.addEventListener("input", (e) => {
+  input.addEventListener("input", () => {
     const value = input.value.replace(/\D+/g, "");
     const numberLength = 11;
 

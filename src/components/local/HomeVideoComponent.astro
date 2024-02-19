@@ -4,7 +4,7 @@
 
 <section>
   <div>
-    <video controls="controls">
+    <video controls="controls" poster="./images/DSC_0214.webp">
       <source src="https://профиль-с.рф/video/profil-c.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
       Тег video не поддерживается вашим браузером.
     </video>
@@ -20,6 +20,7 @@
       max-width: var(--l-max-width);
 
       video {
+        object-fit: cover;
         width: 100%;
       }
     }
