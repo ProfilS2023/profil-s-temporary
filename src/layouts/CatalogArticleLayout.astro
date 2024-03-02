@@ -13,9 +13,7 @@ const { frontmatter } = Astro.props;
     <h1>{frontmatter.title}</h1>
 
     <div>
-      <picture>
-        <img src={frontmatter.image} alt={frontmatter.title} />
-      </picture>
+      <video src={frontmatter.video} autoplay loop></video>
 
       <ul>
         <li>D - диаметр, мм</li>
@@ -65,15 +63,12 @@ const { frontmatter } = Astro.props;
         z-index: 7;
       }
 
-      picture {
+      video {
         grid-column: 2;
         grid-row: 1 / 3;
         margin: 0 0 0 auto;
-
-        img {
-          max-width: 400px;
-          width: 100%;
-        }
+        max-width: 400px;
+        width: 100%;
       }
 
       ul {
@@ -95,7 +90,7 @@ const { frontmatter } = Astro.props;
   @media (max-width: 640px) {
     section {
       div {
-        picture {
+        video {
           grid-column: 1;
           margin: auto;
         }
