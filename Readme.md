@@ -6,4 +6,4 @@
 
 ###
 
-[Разработчик](https://t.me/ioreshkin_dev)
+[Разработчик](https://t.me/oreshkindev)
