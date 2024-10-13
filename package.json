@@ -9,6 +9,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
+    "deploy": "astro check && astro build && sshpass -f ./rsync_pass rsync --archive --compress --delete ./dist/* u2303608@37.140.192.89:./www/xn----otbjkeglu8e.xn--p1ai/",
     "astro": "astro"
   },
   "dependencies": {

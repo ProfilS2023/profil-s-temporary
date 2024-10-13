@@ -2,6 +2,7 @@
 dist/
 # generated types
 .astro/
+rsync_pass
 
 # dependencies
 node_modules/
