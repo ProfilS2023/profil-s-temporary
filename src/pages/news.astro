@@ -1,0 +1,65 @@
+---
+import CrumbsComponent from "../components/global/CrumbsComponent.astro";
+import NewsCardComponent from "../components/local/NewsCardComponent.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const news = [
+  {
+    id: 1,
+    name: "Екатеринбург, мы были там!",
+    image: "/images/news/1.jpg",
+  },
+  {
+    id: 2,
+    name: `Команда "Профиль С" покоряет Казахстан!`,
+    image: "/images/news/4.jpg",
+  },
+  {
+    id: 3,
+    name: "Эльбрус покорен! ",
+    image: "/images/news/5.jpg",
+  },
+];
+---
+
+<BaseLayout>
+  <CrumbsComponent title="Новости" />
+
+  <section>
+    <h1>Новости</h1>
+
+    <p>Здесь мы публикуем актуальные новости</p>
+
+    <div class="cards">
+      {news.map((item) => <NewsCardComponent id={item.id} name={item.name} image={item.image} />)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style lang="scss">
+  section {
+    display: grid;
+    gap: 40px;
+    margin: auto;
+    max-width: var(--l-max-width);
+    padding: 140px clamp(20px, 5vw, 40px);
+
+    div {
+      display: grid;
+      gap: 40px;
+      grid-template: auto / repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+</style>
+
+<script is:inline>
+  const parentElement = document.querySelector(".cards");
+
+  parentElement.addEventListener("click", (event) => {
+    const card = event.target.closest("article");
+
+    if (card) {
+      window.location.href = `/news/${card.dataset.id}`;
+    }
+  });
+</script>

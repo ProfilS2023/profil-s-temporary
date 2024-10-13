@@ -1,0 +1,45 @@
+---
+const { id, image, name } = Astro.props;
+---
+
+<article data-id={id}>
+  <picture>
+    <img src={image} alt={name} />
+  </picture>
+
+  <h5>{name}</h5>
+</article>
+
+<style lang="scss">
+  article {
+    border-radius: 8px;
+    box-shadow: 0 5px 5px rgba(var(--c-dark), 0.1);
+    cursor: pointer;
+    display: grid;
+    gap: 20px;
+    grid-template: auto 1fr / auto;
+    overflow: hidden;
+
+    picture {
+      height: 200px;
+      overflow: hidden;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease-in-out;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      img {
+        transform: scale(1.1);
+      }
+    }
+
+    h5 {
+      margin: 0 20px 20px;
+    }
+  }
+</style>

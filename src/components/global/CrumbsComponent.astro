@@ -1,5 +1,5 @@
 ---
-const { parent, title } = Astro.props;
+const { parent, title, href } = Astro.props;
 ---
 
 <aside>
@@ -9,7 +9,7 @@ const { parent, title } = Astro.props;
       {
         parent && (
           <li>
-            <a href="/catalog">{parent}</a>
+            <a href={href}>{parent}</a>
           </li>
         )
       }
