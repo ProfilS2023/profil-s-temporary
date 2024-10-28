@@ -5,7 +5,26 @@ import HomeOurProductsComponent from "../components/local/HomeOurProductsCompone
 import HomeVideoComponent from "../components/local/HomeVideoComponent.astro";
 import HomeWeightmetricsComponent from "../components/local/HomeWeightmetricsComponent.astro";
 import HomeWhyWeAreComponent from "../components/local/HomeWhyWeAreComponent.astro";
+import NewsCardComponent from "../components/local/NewsCardComponent.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const news = [
+  {
+    id: 1,
+    name: "Екатеринбург, мы были там!",
+    image: "/images/news/1.jpg",
+  },
+  {
+    id: 2,
+    name: `Команда "Профиль С" покоряет Казахстан!`,
+    image: "/images/news/4.jpg",
+  },
+  {
+    id: 3,
+    name: "Эльбрус покорен! ",
+    image: "/images/news/5.jpg",
+  },
+];
 ---
 
 <BaseLayout>
@@ -15,11 +34,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <HomeVideoComponent />
 
+  <section>
+    <h3>Новости</h3>
+
+    <div>
+      {news.map((item) => <NewsCardComponent id={item.id} name={item.name} image={item.image} />)}
+    </div>
+  </section>
+
   <HomeWeightmetricsComponent />
 
   <HomeWhyWeAreComponent />
 
-  <section>
+  <section class="baner">
     <article>
       <h2>Стальные трубы для вашего бизнеса</h2>
       <p>
@@ -36,16 +63,39 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <style lang="scss">
   section {
-    background-color: rgb(var(--c-theme-lighter));
-    box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2);
-    color: rgb(var(--c-light));
     padding: 100px clamp(20px, 5vw, 40px);
-    z-index: 1;
+    text-align: center;
 
-    article {
-      margin: auto;
+    div {
+      display: grid;
+      gap: 40px;
+      grid-template: auto / repeat(auto-fit, minmax(280px, 1fr));
+      margin: 80px auto 0;
       max-width: var(--l-max-width);
-      text-align: center;
+    }
+
+    &.baner {
+      background-color: rgb(var(--c-theme-lighter));
+      box-shadow: 0 5px 5px rgba(var(--c-dark), 0.2);
+      color: rgb(var(--c-light));
+      z-index: 1;
+
+      article {
+        margin: auto;
+        max-width: var(--l-max-width);
+      }
     }
   }
 </style>
+
+<script is:inline>
+  const parentElement = document.querySelector(".cards");
+
+  parentElement.addEventListener("click", (event) => {
+    const card = event.target.closest("article");
+
+    if (card) {
+      window.location.href = `/news/${card.dataset.id}`;
+    }
+  });
+</script>
