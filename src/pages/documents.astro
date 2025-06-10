@@ -1,0 +1,85 @@
+---
+import CrumbsComponent from "../components/global/CrumbsComponent.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <CrumbsComponent title="Документы" />
+
+  <section>
+    <h1>Документы</h1>
+
+    <ul>
+      <li>
+        Отзыв согласия на обработку
+        <a href="../docs/Отзыв_согласия_на_обработку.doc" download>Скачать</a>
+      </li>
+
+      <li>
+        Политика обработки персональных данных
+        <a href="../docs/Политика_обработки_персональных_данных.doc" download>Скачать</a>
+      </li>
+
+      <li>
+        Положение об обработке персональных данных
+        <a href="../docs/Положение_об_обработке_персональных_данных.doc" download>Скачать</a>
+      </li>
+
+      <li>
+        Согласие на обработку
+        <a href="../docs/Согласие_на_обработку.doc" download>Скачать</a>
+      </li>
+    </ul>
+  </section>
+
+</BaseLayout>
+
+<style lang="scss">
+  section {
+    margin: auto;
+    max-width: var(--l-max-width);
+    padding: 140px clamp(20px, 5vw, 40px);
+
+
+    ul {
+        margin: 40px 0 0;
+
+      li {
+        margin: 0 0 20px;
+
+        a,
+        span {
+          display: block;
+          width: fit-content;
+        }
+
+        a {
+          padding: 0 0 5px;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+
+
+  @media only screen and (max-width: 980px) {
+    section {
+      grid-template: auto / repeat(2, auto);
+
+      h1 {
+        grid-column: auto;
+      }
+    }
+
+  }
+
+  @media (max-width: 640px) {
+    section {
+      grid-template: auto / auto;
+    }
+  }
+</style>

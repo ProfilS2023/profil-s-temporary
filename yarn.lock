@@ -783,6 +783,11 @@ array-iterate@^2.0.0:
   resolved "https://registry.yarnpkg.com/array-iterate/-/array-iterate-2.0.1.tgz#6efd43f8295b3fee06251d3d62ead4bd9805dd24"
   integrity sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==
 
+astro-yandex-metrika@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/astro-yandex-metrika/-/astro-yandex-metrika-1.0.1.tgz#62a2e76ef41d8c87450347bbe3d0a5d897083756"
+  integrity sha512-TnAjW097y7w04rUZ/C4pDImZmTtkSmjYL8QEPe/B6zFaA/eRvrXc+8EOxeUUGoV3eZxSM38n7AH2vNiXXzHjiQ==
+
 astro@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/astro/-/astro-4.0.4.tgz#181b229c2071ee2b48fadf840da4a1ee3e30e928"
