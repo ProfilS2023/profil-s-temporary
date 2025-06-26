@@ -38,6 +38,19 @@
       <textarea name="message" id="message" cols="30" rows="5"></textarea>
     </label>
 
+  <ul>
+    <li>
+      <input type="checkbox" name="" id="">
+
+      Согласен с <a href="../../docs/Политика_обработки_персональных_данных.doc" download>политикой обработки персональных данных</a>
+    </li>
+    <li>
+      <input type="checkbox" name="" id="">
+
+      Согласен с <a href="../../docs/Положение_об_обработке_персональных_данных.doc" download>положением об обработке персональных данных</a>
+    </li>
+  </ul>
+
     <button class="button">Отправить</button>
   </form>
 </dialog>
@@ -54,6 +67,16 @@
       right: 20px;
       top: 20px;
       z-index: 2;
+    }
+
+    span {
+      display: block;
+      margin-top: 20px;
+      max-width: 620px;
+    }
+
+    a {
+      text-decoration: underline;
     }
 
     form {
@@ -92,6 +115,22 @@
       }
     }
   }
+
+ul {
+          grid-column: 1 / -1;
+  li {
+      input[type=checkbox] {
+        border: 1px solid #333;
+        width: 15px;
+        height: 15px;
+        margin-right: 10px;
+
+        &:checked {
+          background-color: rgb(var(--c-theme-lighter));
+        }
+      }
+    }
+}
 
   @media only screen and (max-width: 640px) {
     dialog {
