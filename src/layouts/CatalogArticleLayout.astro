@@ -20,13 +20,17 @@ const { frontmatter } = Astro.props;
         <li>S - толщина стенки, мм</li>
       </ul>
 
-      <a href="#" class="button" id="catalog-button">Сделать заказ</a>
+      <button class="button dialog-button">Сделать заказ</button>
+
+      <p>Доставка по всей территории России, осуществляя перевозки от 1 тонны.</p>
     </div>
 
     {frontmatter.type === "circle" ? <CalculatorComponent /> : null}
 
     <article class="markdown-content">
       <slot />
+
+      <button class="button dialog-button">Узнать цену</button>
     </article>
   </section>
 
@@ -101,10 +105,12 @@ const { frontmatter } = Astro.props;
 
 <script is:inline>
   const catalogDialog = document.querySelector("#catalog-dialog");
-  const catalogButton = document.querySelector("#catalog-button");
+  const catalogButtons = document.querySelectorAll(".dialog-button");
 
-  catalogButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    catalogDialog.showModal();
+  catalogButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      e.preventDefault();
+      catalogDialog.showModal();
+    });
   });
 </script>

@@ -15,22 +15,12 @@
   <form id="catalog-form">
     <label>
       ФИО
-      <input type="text" name="fullname" id="fullname" />
+      <input type="text" name="fullname" id="fullname" required />
     </label>
 
     <label>
       Телефон
-      <input type="text" name="phone" id="phone" />
-    </label>
-
-    <label>
-      Эл.почта
-      <input type="text" name="email" id="email" />
-    </label>
-
-    <label>
-      Предполагаемый объем заказа
-      <input type="text" name="amount" id="amount" />
+      <input type="text" name="phone" id="phone" required />
     </label>
 
     <label>
@@ -81,7 +71,6 @@
 
     form {
       display: grid;
-      grid-template: auto / repeat(2, 1fr);
       gap: 20px;
       margin: 40px 0 0;
       position: relative;
@@ -89,17 +78,6 @@
       label {
         display: grid;
 
-        &:first-of-type {
-          grid-column: 1 / -1;
-        }
-
-        &:nth-of-type(4) {
-          grid-column: 1 / -1;
-        }
-
-        &:last-of-type {
-          grid-column: 1 / -1;
-        }
 
         input,
         textarea {
