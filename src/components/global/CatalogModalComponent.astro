@@ -9,10 +9,10 @@
     ></path>
   </svg>
 
-  <h4>Сделать заказ</h4>
-  <p>Пожалуйста, заполните форму и мы свяжемся с вами в ближайшее время.</p>
-
   <form id="catalog-form">
+    <h4>Сделать заказ</h4>
+    <p>Пожалуйста, заполните форму и мы свяжемся с вами в ближайшее время.</p>
+
     <label>
       ФИО
       <input type="text" name="fullname" id="fullname" required />
@@ -28,21 +28,26 @@
       <textarea name="message" id="message" cols="30" rows="5"></textarea>
     </label>
 
-  <ul>
-    <li>
-      <input type="checkbox" name="" id="">
+    <ul>
+      <li>
+        <input type="checkbox" name="" id="" />
 
-      Согласен с <a href="../../docs/Политика_обработки_персональных_данных.doc" download>политикой обработки персональных данных</a>
-    </li>
-    <li>
-      <input type="checkbox" name="" id="">
+        Согласен с <a href="../../docs/Политика_обработки_персональных_данных.doc" download>политикой обработки персональных данных</a>
+      </li>
+      <li>
+        <input type="checkbox" name="" id="" />
 
-      Согласен с <a href="../../docs/Положение_об_обработке_персональных_данных.doc" download>положением об обработке персональных данных</a>
-    </li>
-  </ul>
+        Согласен с <a href="../../docs/Положение_об_обработке_персональных_данных.doc" download>положением об обработке персональных данных</a>
+      </li>
+    </ul>
 
     <button class="button">Отправить</button>
   </form>
+
+  <div id="success-message" style="display: none; text-align: center;">
+    <h4>Спасибо за обращение!</h4>
+    <p>Мы получили вашу заявку и свяжемся с вами в ближайшее время.</p>
+  </div>
 </dialog>
 
 <style lang="scss">
@@ -78,7 +83,6 @@
       label {
         display: grid;
 
-
         input,
         textarea {
           border: 1px solid #eeeeee;
@@ -94,10 +98,10 @@
     }
   }
 
-ul {
-          grid-column: 1 / -1;
-  li {
-      input[type=checkbox] {
+  ul {
+    grid-column: 1 / -1;
+    li {
+      input[type="checkbox"] {
         border: 1px solid #333;
         width: 15px;
         height: 15px;
@@ -108,7 +112,7 @@ ul {
         }
       }
     }
-}
+  }
 
   @media only screen and (max-width: 640px) {
     dialog {
@@ -123,34 +127,25 @@ ul {
 
 <script>
   const form = document.querySelector("#catalog-form") as HTMLFormElement;
-  const catalogDialog = document.querySelector("#catalog-dialog") as HTMLDialogElement;
+  const successMessage = document.querySelector("#success-message") as HTMLElement;
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    let formData = new FormData(form);
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
 
-    const object = {} as any;
-    formData.forEach((value, key) => {
-      object[key] = value;
-    });
-
-    fetch("https://xn----otbjkeglu8e.xn--p1ai/catalog-form.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(object),
-    })
-      .then((data) => {
-        console.log(data);
-        catalogDialog.close();
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        form.reset();
+    try {
+      await fetch("https://xn----otbjkeglu8e.xn--p1ai/catalog-form.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
+
+      form.style.display = "none";
+      successMessage.style.display = "block";
+    } catch (error) {
+      console.log(error);
+    }
   });
 </script>
