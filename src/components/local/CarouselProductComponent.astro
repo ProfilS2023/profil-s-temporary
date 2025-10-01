@@ -17,6 +17,8 @@ const { id, name } = Astro.props;
   article {
     display: grid;
     gap: 20px;
+    min-width: 180px;
+    place-items: center;
     text-align: center;
     transition: all 0.3s ease-in-out;
 
@@ -25,6 +27,7 @@ const { id, name } = Astro.props;
       height: 150px;
       overflow: hidden;
       width: 150px;
+
 
       picture {
         display: grid;

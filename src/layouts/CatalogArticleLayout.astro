@@ -16,8 +16,9 @@ const { frontmatter } = Astro.props;
       <video src={frontmatter.video} autoplay loop></video>
 
       <ul>
-        <li>D - диаметр, мм</li>
-        <li>S - толщина стенки, мм</li>
+        {frontmatter.parameters?.map((param: string) => (
+          <li>{param}</li>
+        ))}
       </ul>
 
       <button class="button dialog-button">Сделать заказ</button>
